@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mirador Fin del Mundo — Treslight</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #F5ECD7;
+      color: #2C2A25;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      border-bottom: 0.5px solid rgba(44,42,37,0.15);
+      background: #F5ECD7;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: #2C2A25;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: rgba(44,42,37,0.5);
+      list-style: none;
+    }
+    .nav-links a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .nav-links a:hover { color: #2C2A25; }
+
+    /* HERO */
+    .hero {
+      width: 100%;
+      height: 92vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      background: #2C2A25;
+    }
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(44,42,37,0.92) 30%, rgba(44,42,37,0.1) 75%);
+    }
+    .hero-content {
+      position: relative;
+      padding: 52px 64px;
+      max-width: 780px;
+    }
+    .hero-tag {
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      color: #C4855A;
+      margin-bottom: 14px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 62px;
+      font-weight: 300;
+      color: #F5ECD7;
+      line-height: 1.05;
+      font-style: italic;
+    }
+    .hero-subtitle {
+      font-size: 14px;
+      color: rgba(245,236,215,0.65);
+      margin-top: 18px;
+      line-height: 1.7;
+      max-width: 520px;
+      font-weight: 300;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: rgba(245,236,215,0.35);
+    }
+
+    /* PHOTO PLACEHOLDER */
+    .photo-placeholder {
+      width: 100%;
+      background: #d4c9b4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1.5px dashed rgba(44,42,37,0.2);
+    }
+    .photo-placeholder span {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: rgba(44,42,37,0.4);
+      text-transform: uppercase;
+    }
+    .photo-placeholder svg {
+      opacity: 0.25;
+    }
+
+    /* ARTICLE BODY */
+    .article-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 72px 48px;
+    }
+
+    /* INTRO BLOCK */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+    .intro-text {}
+    .chapter-label {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: #C4855A;
+      margin-bottom: 16px;
+    }
+    .intro-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.2;
+      color: #2C2A25;
+      margin-bottom: 24px;
+    }
+    .body-text {
+      font-size: 15px;
+      line-height: 1.9;
+      color: rgba(44,42,37,0.72);
+      font-weight: 300;
+      margin-bottom: 18px;
+    }
+    .pull-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-style: italic;
+      font-weight: 300;
+      color: #2C2A25;
+      line-height: 1.45;
+      border-left: 2px solid #C4855A;
+      padding-left: 20px;
+      margin: 32px 0;
+    }
+    .divider {
+      width: 40px;
+      height: 0.5px;
+      background: #C4855A;
+      margin: 32px 0;
+    }
+
+    /* FULL WIDTH PHOTO */
+    .full-photo {
+      width: 100%;
+      margin-bottom: 80px;
+      position: relative;
+    }
+    .full-photo img {
+      width: 100%;
+      height: 580px;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-caption-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 0.5px solid rgba(44,42,37,0.12);
+    }
+    .caption-text {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: rgba(44,42,37,0.4);
+    }
+
+    /* TWO COLUMN PHOTOS */
+    .two-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 80px;
+    }
+    .two-photos img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* TEXT SECTION */
+    .text-section {
+      max-width: 640px;
+      margin: 0 auto 80px;
+    }
+
+    /* PORTRAIT + TEXT */
+    .portrait-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 64px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+    .portrait-grid img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* CLOSING */
+    .closing-section {
+      background: #2C2A25;
+      padding: 80px 64px;
+      margin: 0 -48px;
+      text-align: center;
+    }
+    .closing-tag {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: #C4855A;
+      margin-bottom: 16px;
+    }
+    .closing-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 300;
+      font-style: italic;
+      color: #F5ECD7;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .closing-text {
+      font-size: 14px;
+      color: rgba(245,236,215,0.55);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 0.5px solid rgba(44,42,37,0.12);
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #F5ECD7;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(44,42,37,0.4);
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: rgba(44,42,37,0.35);
+    }
+    .footer-links a { color: inherit; text-decoration: none; }
+
+    /* NEXT ARTICLE */
+    .next-article {
+      padding: 48px;
+      border-top: 0.5px solid rgba(44,42,37,0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .next-label {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: rgba(44,42,37,0.35);
+      margin-bottom: 6px;
+    }
+    .next-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-style: italic;
+      font-weight: 300;
+      color: #2C2A25;
+    }
+    .next-arrow {
+      font-size: 24px;
+      color: #C4855A;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .hero-content { padding: 36px 24px; }
+      .hero-title { font-size: 38px; }
+      .article-wrap { padding: 48px 24px; }
+      .intro-grid { grid-template-columns: 1fr; gap: 32px; }
+      .two-photos { grid-template-columns: 1fr; }
+      .portrait-grid { grid-template-columns: 1fr; }
+      .closing-section { padding: 56px 24px; margin: 0 -24px; }
+      footer { padding: 20px 24px; }
+      .next-article { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Treslight</a>
+    <ul class="nav-links">
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="photography.html">Photography</a></li>
+      <li><a href="vanlife.html">Van Life</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-HERO_kf8fde" class="hero-img" alt="Van on the red dirt road, Sierra Nevada">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">CHAPTER I — SPAIN · SIERRA NEVADA</div>
+      <div class="hero-title">Mirador<br>Fin del Mundo</div>
+      <div class="hero-subtitle">A dirt road, a vanishing point, and the strange feeling of being exactly where you're supposed to be.</div>
+      <div class="hero-meta">
+        <span>February 27, 2026</span>
+        <span>·</span>
+        <span>Sierra Nevada, Spain</span>
+        <span>·</span>
+        <span>6 min read</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE BODY -->
+  <div class="article-wrap">
+
+    <!-- INTRO GRID -->
+    <div class="intro-grid">
+      <div class="intro-text">
+        <div class="chapter-label">THE ROAD IN</div>
+        <div class="intro-title">No GPS signal.<br>No plan.</div>
+        <p class="body-text">I found the Mirador Fin del Mundo by accident. I was driving a dirt road I wasn't supposed to be on — the California bouncing on red earth, dust rising behind me — when the valley opened up and I stopped breathing for a second.</p>
+        <p class="body-text">The Sierra Nevada was ahead of me, white and heavy with snow. Below, the landscape looked like nothing I'd seen before — red clay canyons carved by centuries of water, a green field running along the edge like a wound healing slowly.</p>
+        <div class="pull-quote">"The end of the world. That's what they call this place. Standing there, it made perfect sense."</div>
+        <p class="body-text">There were two other vans parked when I arrived. Nobody spoke. We just looked.</p>
+      </div>
+
+      <div>
+        <!--
+        ========================================================
+        📸 FOTO 1 — specchietto retrovisore
+        (https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-SPECCHIO_dckr4h — mirror reflection Sierra Nevada)
+        Sostituisci con: <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-SPECCHIO_dckr4h" style="width:100%; height:480px; object-fit:cover;" alt="Rearview mirror Sierra Nevada">
+        ========================================================
+        -->
+        <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-SPECCHIO_dckr4h" style="width:100%; height:480px; object-fit:cover; display:block;" alt="photo">
+        <div class="photo-caption-bar" style="margin-top:10px;">
+          <span class="caption-text">SIERRA NEVADA — THE ROAD IN</span>
+          <span class="caption-text">© TRESLIGHT</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL WIDTH PHOTO -->
+    <div class="full-photo">
+      <!--
+      ========================================================
+      📸 FOTO 2 — panoramica canyon e villaggio dall'alto
+      (https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-PANORAMICA_z8rcfr — village in red canyon landscape)
+      Sostituisci con: <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-PANORAMICA_z8rcfr" style="width:100%; height:580px; object-fit:cover;" alt="Village in Sierra Nevada canyon">
+      ========================================================
+      -->
+      <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-PANORAMICA_z8rcfr" style="width:100%; height:580px; object-fit:cover; display:block;" alt="photo">
+      <div class="photo-caption-bar" style="margin-top:10px;">
+        <span class="caption-text">THE VILLAGE OF GORAFE — CARVED INTO THE ROCK</span>
+        <span class="caption-text">© TRESLIGHT</span>
+      </div>
+    </div>
+
+    <!-- TEXT SECTION -->
+    <div class="text-section">
+      <div class="chapter-label">THE PLACE</div>
+      <p class="body-text">This part of Spain doesn't look like Spain. It looks like something between Utah and the moon. The soil is deep red, the rocks layered like sediment left behind by a sea that no longer exists. Villages are carved directly into the cliffs — white walls emerging from the terracotta stone, a surreal geometry that took centuries to build.</p>
+      <div class="divider"></div>
+      <p class="body-text">I walked the dirt road down toward the lake. The water was an impossible shade of turquoise — too vivid, too still, almost artificial. Around it, the eroded gullies and ridges of the badlands stretched as far as I could see.</p>
+      <p class="body-text">I had no internet. No signal. I ate lunch sitting on a rock looking at the water. One of the best meals of the trip.</p>
+    </div>
+
+    <!-- TWO PHOTOS -->
+    <div class="two-photos">
+      <!--
+      ========================================================
+      📸 FOTO 3 — strada verso il villaggio nella roccia
+      (https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-STRADA_groep6 — dirt road leading to cave village)
+      Sostituisci con: <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-STRADA_groep6" ...>
+      ========================================================
+      -->
+      <div>
+        <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-STRADA_groep6" style="width:100%; height:420px; object-fit:cover; display:block;" alt="photo">
+        <div class="photo-caption-bar" style="margin-top:8px;">
+          <span class="caption-text">THE DIRT ROAD</span>
+        </div>
+      </div>
+
+      <!--
+      ========================================================
+      📸 FOTO 4 — lago turchese con colline rosse
+      (foto-lago.jpg — turquoise lake red hills)
+      Sostituisci con: <img src="foto-lago.jpg" ...>
+      ========================================================
+      -->
+      <div>
+        <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-DRONE2_gc5oie" style="width:100%; height:420px; object-fit:cover; display:block;" alt="photo">
+        <div class="photo-caption-bar" style="margin-top:8px;">
+          <span class="caption-text">EMBALSE DE NEGRATÍN</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PORTRAIT + TEXT -->
+    <div class="portrait-grid">
+      <!--
+      ========================================================
+      📸 FOTO 5 — drone verticale van sulla strada rossa
+      (DJI_20260227195051 — van on edge of canyon)
+      Sostituisci con: <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-DRONE2_gc5oie" ...>
+      ========================================================
+      -->
+      <div>
+        <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-DRONE2_gc5oie" style="width:100%; height:520px; object-fit:cover; display:block;" alt="photo">
+        <div class="photo-caption-bar" style="margin-top:8px;">
+          <span class="caption-text">SIERRA NEVADA — FROM ABOVE</span>
+          <span class="caption-text">© TRESLIGHT</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="chapter-label">THE VAN</div>
+        <div class="intro-title" style="font-size:30px;">Home, for one more night</div>
+        <p class="body-text">I slept in the California that night, parked on the ridge above the canyon. No light pollution. The kind of sky you forget exists.</p>
+        <p class="body-text">There's something about sleeping in a van in a place like this that resets something inside you. The world gets quiet in a way it never does at home. You stop checking your phone — not because you decided to, but because you simply forget it exists.</p>
+        <div class="pull-quote">"The California has 105,000 km on it. It still starts every morning."</div>
+        <p class="body-text">I drove out the next morning on the same dirt road, dust rising behind me. I didn't know where I was going. I knew I was in no hurry to get there.</p>
+        <div class="divider"></div>
+        <p style="font-size:12px; letter-spacing:0.1em; color:rgba(44,42,37,0.4);">SIERRA NEVADA · FEBRUARY 2026 · VW CALIFORNIA T5</p>
+      </div>
+    </div>
+
+    <!-- VAN LIFE PHOTO -->
+    <div style="width:100%; margin-bottom:80px;">
+      <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/IMG_1825_qndbgw" style="width:100%; height:500px; object-fit:cover; display:block;" alt="Van life interior New Zealand">
+      <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:0.5px solid rgba(44,42,37,0.12);">
+        <span style="font-size:10px; letter-spacing:0.12em; color:rgba(44,42,37,0.4);">NEW ZEALAND — SOUTH ISLAND · 2023</span>
+        <span style="font-size:10px; letter-spacing:0.12em; color:rgba(44,42,37,0.4);">© TRESLIGHT</span>
+      </div>
+    </div>
+
+    <!-- CLOSING DARK SECTION -->
+    <div class="closing-section">
+      <div class="closing-tag">MIRADOR FIN DEL MUNDO — SIERRA NEVADA</div>
+      <div class="closing-title">The end of the world.<br>The beginning of something else.</div>
+      <p class="closing-text">If you're driving through southern Spain and you find a dirt road with no name on the map — take it. The California can handle it. You might not want to leave.</p>
+    </div>
+
+  </div>
+
+  <!-- NEXT ARTICLE -->
+  <div class="next-article">
+    <div>
+      <div class="next-label">NEXT STORY</div>
+      <div class="next-title">St. Clair at sunset — Côte d'Azur</div>
+    </div>
+    <div class="next-arrow">→</div>
+  </div>
+
+  <!-- ABOUT -->
+  <div style="background:#F5ECD7; border-top:0.5px solid rgba(44,42,37,0.12); padding:40px 48px; display:flex; gap:28px; align-items:center;">
+    <div style="width:80px; height:80px; border-radius:50%; overflow:hidden; flex-shrink:0;">
+      <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/CC342436-D1B8-4FC6-833D-6CC21C7DB284_it0c7m" style="width:100%; height:100%; object-fit:cover;" alt="Treslight">
+    </div>
+    <div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; font-style:italic; color:#2C2A25; margin-bottom:8px;">Who is Treslight</div>
+      <div style="font-size:13px; color:rgba(44,42,37,0.65); line-height:1.8; font-weight:300; max-width:640px;">Half Italian, half Norwegian. Before the T5, I spent 11 months backpacking Australia, then drove the South Island of New Zealand in a converted campervan. Now I explore Europe in my Volkswagen California, always looking for places no one put on the map yet. Van life isn't a trend — it's just where I feel most at home.</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Treslight</div>
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">Newsletter</a>
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>

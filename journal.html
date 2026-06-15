@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal — Treslight</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #F5ECD7; color: #2C2A25; font-family: 'Jost', sans-serif; font-weight: 300; }
+
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; border-bottom: 0.5px solid rgba(44,42,37,0.15); background: #F5ECD7; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; letter-spacing: 0.04em; color: #2C2A25; text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; font-size: 10px; letter-spacing: 0.18em; color: rgba(44,42,37,0.5); list-style: none; }
+    .nav-links a { color: inherit; text-decoration: none; }
+    .nav-links a:hover, .nav-links a.active { color: #2C2A25; }
+
+    .page-header { padding: 72px 48px 56px; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 0.5px solid rgba(44,42,37,0.12); margin-bottom: 0; }
+    .page-tag { font-size: 9px; letter-spacing: 0.28em; color: #C4855A; margin-bottom: 14px; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; font-style: italic; line-height: 1.1; color: #2C2A25; }
+    .page-count { font-size: 11px; letter-spacing: 0.1em; color: rgba(44,42,37,0.35); }
+
+    .filter-bar { padding: 0 48px; border-bottom: 0.5px solid rgba(44,42,37,0.12); display: flex; gap: 0; }
+    .filter-tab { font-size: 10px; letter-spacing: 0.15em; padding: 14px 20px; color: rgba(44,42,37,0.4); border-bottom: 1.5px solid transparent; cursor: pointer; text-decoration: none; }
+    .filter-tab.active { color: #2C2A25; border-bottom-color: #C4855A; }
+    .filter-tab:hover { color: #2C2A25; }
+
+    .articles-grid { max-width: 1100px; margin: 0 auto; padding: 56px 48px 80px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 32px; }
+
+    .article-card { cursor: pointer; text-decoration: none; display: block; }
+    .article-card:hover .card-title { color: #C4855A; }
+    .card-img { aspect-ratio: 3/4; position: relative; overflow: hidden; border-radius: 2px; margin-bottom: 14px; background: #d4c9b4; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .article-card:hover .card-img img { transform: scale(1.03); }
+    .card-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(44,42,37,0.65) 25%, transparent 55%); }
+    .card-chapter { position: absolute; bottom: 12px; left: 14px; font-size: 8px; letter-spacing: 0.2em; color: #C4855A; }
+    .card-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; font-style: italic; color: #2C2A25; line-height: 1.3; margin-bottom: 6px; transition: color 0.2s; }
+    .card-meta { font-size: 10px; color: rgba(44,42,37,0.4); letter-spacing: 0.08em; }
+
+    .coming-soon { grid-column: 1 / -1; padding: 80px 0; text-align: center; border-top: 0.5px solid rgba(44,42,37,0.12); }
+    .coming-soon-text { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-style: italic; font-weight: 300; color: rgba(44,42,37,0.3); }
+
+    footer { border-top: 0.5px solid rgba(44,42,37,0.12); padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: #F5ECD7; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 300; color: rgba(44,42,37,0.4); }
+    .footer-links { display: flex; gap: 24px; font-size: 10px; letter-spacing: 0.15em; color: rgba(44,42,37,0.35); }
+    .footer-links a { color: inherit; text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .page-header { padding: 48px 24px 40px; flex-direction: column; align-items: flex-start; gap: 16px; }
+      .page-title { font-size: 38px; }
+      .filter-bar { padding: 0 24px; overflow-x: auto; }
+      .articles-grid { padding: 40px 24px 60px; grid-template-columns: 1fr; gap: 40px; }
+      footer { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Treslight</a>
+    <ul class="nav-links">
+      <li><a href="journal.html" class="active">Journal</a></li>
+      <li><a href="photography.html">Photography</a></li>
+      <li><a href="vanlife.html">Van Life</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div>
+      <div class="page-tag">JOURNAL — ALL STORIES</div>
+      <div class="page-title">Every road<br>has a story.</div>
+    </div>
+    <div class="page-count">1 story published</div>
+  </div>
+
+  <div class="filter-bar">
+    <a href="#" class="filter-tab active">All</a>
+    <a href="#" class="filter-tab">France</a>
+    <a href="#" class="filter-tab">Spain</a>
+    <a href="#" class="filter-tab">Portugal</a>
+    <a href="#" class="filter-tab">Van Life</a>
+  </div>
+
+  <div class="articles-grid">
+
+    <a href="index.html" class="article-card">
+      <div class="card-img">
+        <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/FOTO-HERO_kf8fde" alt="Mirador Fin del Mundo">
+        <div class="card-img-overlay"></div>
+        <div class="card-chapter">CHAPTER I — SPAIN</div>
+      </div>
+      <div class="card-title">Mirador Fin del Mundo</div>
+      <div class="card-meta">Sierra Nevada · February 2026 · 6 min read</div>
+    </a>
+
+    <div class="coming-soon" style="grid-column: 1 / -1; padding: 60px 0;">
+      <div class="coming-soon-text">More stories coming soon —<br>France, Portugal, and beyond.</div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-logo">Treslight</div>
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">Newsletter</a>
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>

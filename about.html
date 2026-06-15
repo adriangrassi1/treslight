@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Treslight</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #F5ECD7; color: #2C2A25; font-family: 'Jost', sans-serif; font-weight: 300; }
+
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 48px; border-bottom: 0.5px solid rgba(44,42,37,0.15);
+      background: #F5ECD7; position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; letter-spacing: 0.04em; color: #2C2A25; text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; font-size: 10px; letter-spacing: 0.18em; color: rgba(44,42,37,0.5); list-style: none; }
+    .nav-links a { color: inherit; text-decoration: none; }
+    .nav-links a:hover, .nav-links a.active { color: #2C2A25; }
+
+    .page-header {
+      padding: 72px 48px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .page-tag { font-size: 9px; letter-spacing: 0.28em; color: #C4855A; margin-bottom: 14px; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; font-style: italic; line-height: 1.1; color: #2C2A25; }
+
+    .hero-portrait {
+      width: 100%;
+      height: 70vh;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 80px;
+    }
+    .hero-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(44,42,37,0.4) 0%, transparent 50%);
+    }
+
+    .content-wrap { max-width: 1100px; margin: 0 auto; padding: 0 48px 80px; }
+
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 80px; }
+
+    .chapter-label { font-size: 9px; letter-spacing: 0.25em; color: #C4855A; margin-bottom: 16px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; font-style: italic; line-height: 1.2; color: #2C2A25; margin-bottom: 24px; }
+    .body-text { font-size: 15px; line-height: 1.9; color: rgba(44,42,37,0.72); font-weight: 300; margin-bottom: 18px; }
+    .pull-quote { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; font-weight: 300; color: #2C2A25; line-height: 1.45; border-left: 2px solid #C4855A; padding-left: 20px; margin: 32px 0; }
+    .divider { width: 40px; height: 0.5px; background: #C4855A; margin: 32px 0; }
+
+    .full-photo { width: 100%; margin-bottom: 80px; }
+    .full-photo img { width: 100%; height: 520px; object-fit: cover; display: block; }
+    .photo-caption { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 0.5px solid rgba(44,42,37,0.12); }
+    .caption-text { font-size: 10px; letter-spacing: 0.12em; color: rgba(44,42,37,0.4); }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 80px; }
+    .two-col img { width: 100%; height: 400px; object-fit: cover; display: block; }
+
+    .closing-dark {
+      background: #2C2A25; padding: 80px 64px; margin: 0 -48px;
+      text-align: center; margin-bottom: 0;
+    }
+    .closing-tag { font-size: 9px; letter-spacing: 0.25em; color: #C4855A; margin-bottom: 16px; }
+    .closing-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; font-style: italic; color: #F5ECD7; line-height: 1.2; margin-bottom: 20px; }
+    .closing-text { font-size: 14px; color: rgba(245,236,215,0.55); max-width: 500px; margin: 0 auto; line-height: 1.8; font-weight: 300; }
+
+    footer { border-top: 0.5px solid rgba(44,42,37,0.12); padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: #F5ECD7; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 300; color: rgba(44,42,37,0.4); }
+    .footer-links { display: flex; gap: 24px; font-size: 10px; letter-spacing: 0.15em; color: rgba(44,42,37,0.35); }
+    .footer-links a { color: inherit; text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .page-header { padding: 48px 24px 32px; }
+      .page-title { font-size: 38px; }
+      .content-wrap { padding: 0 24px 60px; }
+      .intro-grid { grid-template-columns: 1fr; gap: 40px; }
+      .two-col { grid-template-columns: 1fr; }
+      .closing-dark { padding: 56px 24px; margin: 0 -24px; }
+      footer { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Treslight</a>
+    <ul class="nav-links">
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="photography.html">Photography</a></li>
+      <li><a href="vanlife.html">Van Life</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-tag">ABOUT — TRESLIGHT</div>
+    <div class="page-title">Half Italian,<br>half Norwegian,<br>always moving.</div>
+  </div>
+
+  <div class="hero-portrait">
+    <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/CC342436-D1B8-4FC6-833D-6CC21C7DB284_it0c7m" alt="Adrian — Treslight">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="content-wrap">
+
+    <div class="intro-grid">
+      <div>
+        <div class="chapter-label">THE BEGINNING</div>
+        <div class="section-title">Before the van,<br>there was the road.</div>
+        <p class="body-text">My name is Adrian. I'm half Italian, half Norwegian — which means I grew up between two very different ideas of what life should look like. I chose the one that moves.</p>
+        <p class="body-text">In 2023, I bought a one-way ticket to Australia. No plan, no return date. Just a backpack and eleven months of roads, people, and places I hadn't imagined yet.</p>
+        <div class="pull-quote">"Eleven months. One backpack. Australia showed me that the slower you go, the more you actually see."</div>
+        <p class="body-text">From Australia I flew to New Zealand — South Island. I converted a small van and drove for weeks through some of the most remote landscapes I've ever seen. That's where van life stopped being an idea and became a way of being.</p>
+      </div>
+
+      <div>
+        <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/IMG_1825_qndbgw" style="width:100%; height:580px; object-fit:cover; object-position: center bottom; display:block;" alt="Van life New Zealand">
+        <div class="photo-caption" style="margin-top:10px;">
+          <span class="caption-text">NEW ZEALAND — SOUTH ISLAND · 2023</span>
+          <span class="caption-text">© TRESLIGHT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider" style="margin: 0 auto 80px;"></div>
+
+    <div class="intro-grid">
+      <div>
+        <img src="https://res.cloudinary.com/dsz2t8g9b/image/upload/f_auto,q_auto/IMG_5853_frg2we" style="width:100%; height:500px; object-fit:cover; display:block;" alt="The T5 California — day one">
+        <div class="photo-caption" style="margin-top:10px;">
+          <span class="caption-text">BREMEN, GERMANY — SEPTEMBER 2025</span>
+          <span class="caption-text">© TRESLIGHT</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="chapter-label">THE T5</div>
+        <div class="section-title">A night train<br>and a decision.</div>
+        <p class="body-text">Back in Europe, I knew I wanted to do it again — but this time with something more. A real home on wheels.</p>
+        <p class="body-text">Late September 2025, a few days before my birthday, I found it by accident on a German website. A 2012 Volkswagen California T5, full camper setup, 4x4, 105,000 km. The kind of listing that disappears overnight.</p>
+        <p class="body-text">I didn't think twice. That night I took a train to Bremen, in northern Germany, and by the next morning the California was mine.</p>
+        <div class="pull-quote">"A night train to Bremen. A birthday present to myself I hadn't planned."</div>
+        <p class="body-text">A few weeks later I pointed it south — France, Spain, Portugal. Treslight had begun.</p>
+      </div>
+    </div>
+
+    <div class="closing-dark">
+      <div class="closing-tag">TRESLIGHT — THE PROJECT</div>
+      <div class="closing-title">Slow travel.<br>Hidden places.<br>Real stories.</div>
+      <p class="closing-text">Treslight is a journal of van life, photography, and the kind of travel that doesn't follow a schedule. Follow along on Instagram or read the stories in the Journal.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-logo">Treslight</div>
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">Newsletter</a>
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>
